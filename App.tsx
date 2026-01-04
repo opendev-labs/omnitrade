@@ -133,7 +133,7 @@ const App: React.FC = () => {
                 <h3 className="text-lg lg:text-xl font-bold tracking-tight uppercase text-primary">Neural Oracle v9.4</h3>
               </div>
               <div className="bg-void p-6 lg:p-10 rounded-sm font-mono-data text-xs lg:text-sm text-secondary border border-white/5 min-h-[200px] lg:min-h-[300px] leading-relaxed shadow-inner">
-                <span className="text-muted mr-2 font-black">SYS_LOG ></span> {aiAdvice}
+                <span className="text-muted mr-2 font-black">SYS_LOG &gt;</span> {aiAdvice}
               </div>
               <div className="mt-6 lg:mt-10 flex flex-col sm:flex-row gap-4">
                 <input type="text" placeholder="ENTER QUERY PARAMETERS..." className="flex-1 bg-void border border-white/10 px-6 py-4 text-xs font-mono-data text-primary focus:outline-none focus:border-accent transition-all uppercase tracking-widest" />
