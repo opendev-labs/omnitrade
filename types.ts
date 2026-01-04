@@ -39,6 +39,18 @@ export enum RiskLevel {
   HIGH = 'HIGH'
 }
 
+export interface TokenRotation {
+  ticker: string;
+  strength: number;
+  status: string;
+}
+
+export interface CorrelationData {
+  cluster_a: string[];
+  cluster_b: string[];
+  stress_index: number;
+}
+
 export interface ScannerState {
   volatility: 'LOW' | 'HIGH';
   trend: TrendState;
@@ -46,6 +58,8 @@ export interface ScannerState {
   clock: ClockSession;
   cycle: 'EARLY' | 'MID' | 'LATE';
   uncertainty: 'LOW' | 'HIGH' | 'CRITICAL';
+  rotation?: TokenRotation[];
+  correlation?: CorrelationData;
 }
 
 export interface BotConfig {
