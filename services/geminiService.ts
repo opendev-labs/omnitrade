@@ -29,16 +29,11 @@ export async function getMarketAdvice(state: ScannerState): Promise<string> {
       Respond with specific bot recommendations based on these conditions. Keep it professional and concise.
     `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: prompt,
-      config: {
-        temperature: 0.7,
-        topP: 0.95,
-      },
-    });
-
-    return response.text || "Unable to retrieve AI analysis at this time.";
+    const ai = getAI();
+    const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text() || "Unable to retrieve AI analysis at this time.";
   } catch (error) {
     console.error("Gemini Advice Error:", error);
     return "Connection to AI Logic Engine lost. Monitoring manual telemetry.";
