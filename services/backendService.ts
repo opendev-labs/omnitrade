@@ -34,6 +34,16 @@ class BackendService {
             this.listeners = this.listeners.filter(l => l !== callback);
         };
     }
+
+    async initializeBot(botId: string) {
+        try {
+            await fetch(`http://localhost:8000/api/bots/${botId}/initialize`, {
+                method: 'POST'
+            });
+        } catch (error) {
+            console.error(`Error initializing bot ${botId}:`, error);
+        }
+    }
 }
 
 export const backendService = new BackendService();

@@ -42,6 +42,9 @@ const App: React.FC = () => {
   const [aiAdvice, setAiAdvice] = useState<string>("Analyzing cross-chain liquidity metrics for institutional exposure...");
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [googleSheetId, setGoogleSheetId] = useState('');
+  const [serviceAccountJson, setServiceAccountJson] = useState('');
 
   // Clock
   useEffect(() => {
@@ -77,6 +80,15 @@ const App: React.FC = () => {
 
   const toggleBot = (id: string) => {
     setBots(prev => prev.map(b => b.id === id ? { ...b, active: !b.active } : b));
+  };
+
+  const initializeBot = async (id: string) => {
+    console.log(`Initializing bot ${id}...`);
+    try {
+      await backendService.initializeBot(id);
+    } catch (e) {
+      console.error("Failed to initialize bot", e);
+    }
   };
 
   const navItems = [
@@ -120,7 +132,7 @@ const App: React.FC = () => {
           <div className="page-enter">
             {renderViewHeader("Fleet Management", "Deployment grid for institutional execution modules.")}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-neutral-900/10 border border-white/5 rounded-sm overflow-hidden">
-              {bots.map(bot => <BotCard key={bot.id} bot={bot} onToggle={toggleBot} />)}
+              {bots.map(bot => <BotCard key={bot.id} bot={bot} onToggle={toggleBot} onInitialize={initializeBot} />)}
             </div>
           </div>
         );
@@ -161,7 +173,7 @@ const App: React.FC = () => {
                     <button onClick={() => setCurrentView(View.BOTS)} className="text-xs font-bold text-muted hover:text-accent uppercase transition-all tracking-[0.3em]">All Fleet →</button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-900/10 border border-white/5 rounded-sm overflow-hidden">
-                    {bots.slice(0, 3).map(bot => <BotCard key={bot.id} bot={bot} onToggle={toggleBot} />)}
+                    {bots.slice(0, 3).map(bot => <BotCard key={bot.id} bot={bot} onToggle={toggleBot} onInitialize={initializeBot} />)}
                   </div>
                 </div>
 
@@ -241,8 +253,54 @@ const App: React.FC = () => {
               <span className="text-xs font-bold text-muted uppercase tracking-widest opacity-60 hidden sm:block">Auth</span>
               <span className="text-xs lg:text-sm font-mono-data font-bold text-secondary opacity-80">0x...F7E2</span>
             </div>
+
+            <div className="hidden md:block w-[1px] h-8 lg:h-10 bg-white/10"></div>
+
+            <button onClick={() => setIsSettingsOpen(true)} className="group hover:text-accent transition-colors">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </button>
           </div>
         </header>
+
+        {/* SETTINGS MODAL */}
+        {isSettingsOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+            <div className="bg-ink border border-white/10 p-8 rounded-sm w-full max-w-lg shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-xl font-bold uppercase tracking-widest text-primary">System Config</h2>
+                <button onClick={() => setIsSettingsOpen(false)} className="text-muted hover:text-accent">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-muted uppercase tracking-widest">Google Sheet ID</label>
+                  <input
+                    type="text"
+                    value={googleSheetId}
+                    onChange={e => setGoogleSheetId(e.target.value)}
+                    className="w-full bg-void border border-white/10 p-3 text-sm font-mono-data text-secondary focus:border-accent outline-none"
+                    placeholder="SPREADSHEET_ID"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-muted uppercase tracking-widest">Service Account JSON</label>
+                  <textarea
+                    value={serviceAccountJson}
+                    onChange={e => setServiceAccountJson(e.target.value)}
+                    className="w-full bg-void border border-white/10 p-3 text-sm font-mono-data text-secondary focus:border-accent outline-none h-32"
+                    placeholder="{ ... }"
+                  />
+                </div>
+                <div className="pt-4 flex justify-end gap-4">
+                  <button onClick={() => setIsSettingsOpen(false)} className="px-6 py-3 text-xs font-bold uppercase tracking-widest text-muted hover:text-primary">Cancel</button>
+                  <button onClick={() => setIsSettingsOpen(false)} className="px-8 py-3 bg-accent text-void text-xs font-bold uppercase tracking-widest hover:bg-accent/90">Save Config</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <section className="flex-1 overflow-y-auto p-6 lg:p-16 custom-scrollbar transition-colors duration-500">
           {renderContent()}

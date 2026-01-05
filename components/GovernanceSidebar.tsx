@@ -19,19 +19,22 @@ const GovernanceSidebar: React.FC<GovernanceSidebarProps> = ({ healthScore, mode
       {/* High-Precision Health Gauge */}
       <div className="terminal-panel p-8 lg:p-12 rounded-sm flex flex-col items-center">
         <div className="relative w-36 h-36 lg:w-44 lg:h-44 flex items-center justify-center">
-          <svg className="w-full h-full transform -rotate-90">
-            <circle cx="50%" cy="50%" r="48%" stroke="var(--border)" strokeWidth="0.5" fill="transparent" />
+          <svg className="w-full h-full transform -rotate-90 drop-shadow-[0_0_10px_rgba(var(--accent-rgb),0.3)]" viewBox="0 0 100 100">
+            {/* Track */}
+            <circle cx="50" cy="50" r="44" stroke="var(--border)" strokeWidth="2" fill="transparent" opacity="0.2" />
+            {/* Progress */}
             <circle
-              cx="50%" cy="50%" r="47%" stroke="var(--text-secondary)" strokeWidth="1.5" fill="transparent"
-              strokeDasharray="300%"
-              strokeDashoffset={`${300 - (300 * healthScore) / 100}%`}
+              cx="50" cy="50" r="44" stroke="var(--text-secondary)" strokeWidth="4" fill="transparent"
+              strokeDasharray="276.46"
+              strokeDashoffset={`${276.46 * (1 - healthScore / 100)}`}
+              strokeLinecap="round"
               className="transition-all duration-1000 ease-[var(--easing)]"
               style={{ stroke: 'var(--accent)' }}
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-5xl lg:text-7xl font-bold tracking-tighter text-accent leading-none">{healthScore}</span>
-            <span className="text-xs lg:text-sm text-secondary font-bold uppercase tracking-[0.5em] mt-3 lg:mt-4">Health Idx</span>
+            <span className="text-5xl lg:text-7xl font-bold tracking-tighter text-accent leading-none drop-shadow-[0_0_8px_rgba(var(--accent-rgb),0.5)]">{healthScore}</span>
+            <span className="text-xs lg:text-sm text-secondary font-bold uppercase tracking-[0.5em] mt-3 lg:mt-4 opacity-80">Health Idx</span>
           </div>
         </div>
 

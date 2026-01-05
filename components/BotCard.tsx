@@ -4,9 +4,10 @@ import { BotConfig, RiskLevel } from '../types';
 interface BotCardProps {
   bot: BotConfig;
   onToggle: (id: string) => void;
+  onInitialize: (id: string) => void;
 }
 
-const BotCard: React.FC<BotCardProps> = ({ bot, onToggle }) => {
+const BotCard: React.FC<BotCardProps> = ({ bot, onToggle, onInitialize }) => {
   const isGuardian = bot.isGuardian;
 
   return (
@@ -52,6 +53,7 @@ const BotCard: React.FC<BotCardProps> = ({ bot, onToggle }) => {
       <div className="pt-4 flex gap-4">
         <button
           disabled={!bot.active}
+          onClick={() => onInitialize(bot.id)}
           className={`flex-1 py-3 lg:py-4 text-xs lg:text-sm font-bold uppercase tracking-[0.3em] transition-all duration-500 border ${bot.active ? 'bg-void border-white/10 hover:bg-accent hover:text-void text-primary' : 'bg-transparent text-muted border-transparent cursor-not-allowed'}`}
         >
           Initialize
