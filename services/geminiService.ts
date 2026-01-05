@@ -2,7 +2,18 @@
 import { GoogleGenAI } from "@google/genai";
 import { ScannerState, MarketPhase, TrendState } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let aiInstance: GoogleGenAI | null = null;
+
+function getAI() {
+  if (!aiInstance) {
+    const key = process.env.API_KEY || process.env.GEMINI_API_KEY || "";
+    if (!key || key === "undefined") {
+      throw new Error("API Key missing");
+    }
+    aiInstance = new GoogleGenAI(key);
+  }
+  return aiInstance;
+}
 
 export async function getMarketAdvice(state: ScannerState): Promise<string> {
   try {
