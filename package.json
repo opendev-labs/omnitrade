@@ -1,7 +1,15 @@
-{
   "name": "omnitrade-governance-command-center",
   "private": true,
-  "version": "0.0.0",
+  "version": "4.2.0",
+  "description": "The Institutional-Grade Trading Operating System built on a Zero-Cost Architecture. Features 10 algorithmic bots, automated governance, and Google Sheets integration.",
+  "keywords": [
+    "trading-bot",
+    "institutional-trading",
+    "zero-cost",
+    "governance",
+    "typescript",
+    "python"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
