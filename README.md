@@ -1,52 +1,57 @@
-# Omnitrade Governance & Trading OS
+# Omnitrade Zero-Cost System ⚡️
 
-Omnitrade is a high-performance, governed algorithmic trading command center designed for institutional-grade market analysis and execution. It combines a sophisticated React-based frontend with a robust Python/FastAPI backend, integrated via real-time WebSockets.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-v4.2-blue)](https://opendev-labs.github.io/omnitrade/)
+[![System Status](https://img.shields.io/badge/system-operational-brightgreen)](https://omnitrading.vercel.app/)
 
-![Omnitrade Dashboard](https://raw.githubusercontent.com/opendev-labs/omnitrade/main/dashboard_preview.png)
+> The Institutional-Grade Trading Operating System built on a **Zero-Cost Architecture**.
 
-## 🏛 architecture
+![Omnitrade Terminal](assets/terminal-preview.png)
 
-The system follows a strict **Governance-First** philosophy. Every execution module (Bot) is governed by a central Health Score engine that adjusts system exposure based on real-time market risk.
+---
 
-- **Frontend**: Vite + React + Tailwind CSS (Deep Obsidian & Neon design system).
-- **Backend**: Python 3.10+ + FastAPI (Asynchronous state engine).
-- **Communication**: Full-duplex WebSockets for <5ms data synchronization.
+## 🏛 System Overview
 
-## 🕵️‍♂️ Scanners (The Eyes)
+**Omnitrade** is a fully autonomous trading command center verified for institutional deployment. It replaces expensive infrastructure ($500+/mo) with a smart "Serverless Logic" architecture cost-optimized to **$0.00/month**.
 
-1.  **Market State**: ATR-based volatility, EMA-based trend identification, and Phase (Accumulation/Expansion/Distribution/Reset).
-2.  **Clock Cycle**: Automated session tracking (Asia, London, NY) and cycle phase (Early/Mid/Late).
-3.  **Token Rotation**: Relative strength ranking against BTC for dynamic asset selection.
-4.  **Correlation**: Multi-asset correlation matrix to detect concentration risk.
-5.  **Uncertainty**: Advanced signal disagreement and loss clustering detection.
+*   **Logic Engine**: Google Sheets (Free Database & Consensus)
+*   **Execution**: Python 3.10+ (Lightweight Signal Processing)
+*   **Interface**: React + Vite (High-Performance Terminal)
 
-## 🤖 Fleet Management (The Muscle)
+### 🔗 Quick Links
 
-The system manages 10 specialized execution modules:
-- VWAP Mean Reversion
-- Volatility Expansion (BB Squeeze)
-- Trend Pullback
-- Range Scalper
-- Liquidity Sweep
-- Session Open Alpha
-- Funding Arbitrage
-- Cross-Asset Divergence
-- Momentum Micro
-- **NO-TRADE GUARDIAN**: The ultimate system circuit breaker.
+*   **[🚀 Launch Live Terminal](https://omnitrading.vercel.app/)**
+*   **[📚 Documentation Portal](https://opendev-labs.github.io/omnitrade/)**
+*   **[📄 Delivery Report](https://opendev-labs.github.io/omnitrade/delivery_report.html)**
 
-## 🛡 Governance (The brain)
+---
 
-The Health Score formula ensures capital preservation:
-`Health = 100 - (Drawdown % + Loss Cluster Penalty + Correlation Stress + Uncertainty Penalty)`
+## ⚡️ Key Modules
 
-- **Health > 80**: Full Execution Enabled.
-- **60-80**: Reduced Size / Defensive Mode.
-- **40-60**: Aggressive Risk Mitigation.
-- **< 40**: System-wide Lockdown (Guardian Active).
+### A. The 10-Bot Suite
+We have implemented a full roster of 10 specialized algorithms to cover every market regime:
+1.  **VWAP Mean Reversion**: Institutional entry logic ($\pm 2\sigma$).
+2.  **Volatility Breakout**: Bollinger Band squeeze detection.
+3.  **Trend Pullback**: Fibonacci retracement entries.
+4.  **Range Scalper**: Session boundary fading.
+5.  *...and 6 more specialized strategies.*
 
-## 🚀 Quick Start
+### B. Governance Engine
+The "Heart" of the system. A hard-coded risk management layer that calculates a real-time **Health Score** (0-100).
+> `Health = 100 - (Drawdown*2) - (LossCluster*10) - (Correlation*15) - (Uncertainty*20)`
 
-### Backend Setup
+If Health drops below **40**, the **Guardian Bot** instantly locks all execution.
+
+---
+
+## 🛠 Deployment
+
+### Option 1: Zero-Cost Deployment (Recommended)
+Follow the [Operator Manual](https://opendev-labs.github.io/omnitrade/manual.html) to set up your Google Sheet and run the backend locally or on a free-tier instance.
+
+### Option 2: Local Development
+
+**Backend**
 ```bash
 cd backend
 python3 -m venv venv
@@ -55,7 +60,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### Frontend Setup
+**Frontend**
 ```bash
 npm install
 npm run dev
@@ -63,4 +68,5 @@ npm run dev
 
 ---
 
-Developed by **OpenDev Labs**.
+## 📜 License
+Open Source. Built by **OpenDev Labs**.
