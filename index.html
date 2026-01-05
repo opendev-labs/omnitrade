@@ -41,21 +41,20 @@
         :root {
             --easing: cubic-bezier(0.2, 0, 0, 1);
 
-            /* Institutional Slate Dark - DEFAULT */
+            /* Institutional Slate Dark - OLLAMA SCALE */
             --void: #09090b;
             --ink: #111114;
             --graphite: #18181b;
             --smoke: #27272a;
-            --border: rgba(255, 255, 255, 0.1);
-            --border-hover: rgba(255, 255, 255, 0.2);
+            --border: rgba(255, 255, 255, 0.12);
+            --border-hover: rgba(255, 255, 255, 0.25);
             --text-primary: #ffffff;
-            /* High contrast white */
-            --text-secondary: #a1a1aa;
-            /* Slate 400 */
-            --text-muted: #52525b;
-            /* Slate 600 */
+            --text-secondary: #d1d1d6;
+            /* Brightened for better visibility */
+            --text-muted: #71717a;
+            /* Slate 500 */
             --accent: #ffffff;
-            --mesh: rgba(255, 255, 255, 0.03);
+            --mesh: rgba(255, 255, 255, 0.04);
         }
 
         html.light {
@@ -63,18 +62,20 @@
             --ink: #ffffff;
             --graphite: #f1f1f4;
             --smoke: #e4e4e7;
-            --border: rgba(0, 0, 0, 0.1);
-            --border-hover: rgba(0, 0, 0, 0.2);
+            --border: rgba(0, 0, 0, 0.12);
+            --border-hover: rgba(0, 0, 0, 0.22);
             --text-primary: #09090b;
-            --text-secondary: #3f3f46;
-            --text-muted: #71717a;
+            --text-secondary: #27272a;
+            --text-muted: #52525b;
             --accent: #000000;
-            --mesh: rgba(0, 0, 0, 0.03);
+            --mesh: rgba(0, 0, 0, 0.04);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-feature-settings: "cv02", "cv03", "cv04", "ss01", "ss03";
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            font-size: 14px;
+            /* Increased from default */
+            line-height: 1.5;
             background-color: var(--void);
             color: var(--text-secondary);
             margin: 0;

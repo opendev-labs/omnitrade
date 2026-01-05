@@ -99,15 +99,15 @@ const App: React.FC = () => {
   }, [scannerState.phase, scannerState.uncertainty, fetchAdvice]);
 
   const renderViewHeader = (title: string, subtitle: string) => (
-    <div className="mb-8 lg:mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-white/5 pb-6 lg:pb-8">
-      <div className="space-y-1 lg:space-y-2">
-        <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-primary uppercase leading-none">{title}</h2>
-        <p className="text-muted font-bold text-[8px] lg:text-[9px] uppercase tracking-[0.4em]">{subtitle}</p>
+    <div className="mb-10 lg:mb-16 flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-white/10 pb-8 lg:pb-10">
+      <div className="space-y-2 lg:space-y-4">
+        <h2 className="text-4xl lg:text-7xl font-bold tracking-tighter text-primary uppercase leading-none">{title}</h2>
+        <p className="text-muted font-bold text-xs lg:text-sm uppercase tracking-[0.5em]">{subtitle}</p>
       </div>
-      <div className="mt-4 sm:mt-0 flex flex-row sm:flex-col items-center sm:items-end gap-4">
+      <div className="mt-6 sm:mt-0 flex flex-row sm:flex-col items-center sm:items-end gap-6">
         <div className="flex flex-col items-end">
-          <span className="text-[8px] font-black text-muted uppercase tracking-widest opacity-60 hidden sm:block">Protocol Sync</span>
-          <span className="text-[10px] lg:text-xs font-mono-data font-bold text-secondary uppercase tracking-widest">Active</span>
+          <span className="text-xs font-black text-muted uppercase tracking-widest opacity-60 hidden sm:block">Protocol Sync</span>
+          <span className="text-sm lg:text-base font-mono-data font-bold text-secondary uppercase tracking-widest">Active</span>
         </div>
       </div>
     </div>
@@ -132,12 +132,12 @@ const App: React.FC = () => {
                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse shadow-[0_0_10px_var(--accent)]"></div>
                 <h3 className="text-lg lg:text-xl font-bold tracking-tight uppercase text-primary">Neural Oracle v9.4</h3>
               </div>
-              <div className="bg-void p-6 lg:p-10 rounded-sm font-mono-data text-xs lg:text-sm text-secondary border border-white/5 min-h-[200px] lg:min-h-[300px] leading-relaxed shadow-inner">
-                <span className="text-muted mr-2 font-black">SYS_LOG &gt;</span> {aiAdvice}
+              <div className="bg-void p-8 lg:p-12 rounded-sm font-mono-data text-sm lg:text-base text-secondary border border-white/5 min-h-[200px] lg:min-h-[300px] leading-relaxed shadow-inner">
+                <span className="text-muted mr-3 font-black">SYS_LOG &gt;</span> {aiAdvice}
               </div>
-              <div className="mt-6 lg:mt-10 flex flex-col sm:flex-row gap-4">
-                <input type="text" placeholder="ENTER QUERY PARAMETERS..." className="flex-1 bg-void border border-white/10 px-6 py-4 text-xs font-mono-data text-primary focus:outline-none focus:border-accent transition-all uppercase tracking-widest" />
-                <button onClick={fetchAdvice} className="px-10 py-4 bg-accent text-void text-[10px] font-bold uppercase tracking-[0.4em] transition-all duration-300 active:scale-95">Execute</button>
+              <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row gap-6">
+                <input type="text" placeholder="ENTER QUERY PARAMETERS..." className="flex-1 bg-void border border-white/10 px-6 py-5 text-sm font-mono-data text-primary focus:outline-none focus:border-accent transition-all uppercase tracking-widest" />
+                <button onClick={fetchAdvice} className="px-12 py-5 bg-accent text-void text-xs font-bold uppercase tracking-[0.4em] transition-all duration-300 active:scale-95">Execute</button>
               </div>
             </div>
           </div>
@@ -148,17 +148,17 @@ const App: React.FC = () => {
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 lg:gap-10">
               <div className="xl:col-span-3 space-y-10 lg:space-y-12">
                 <div className="terminal-panel p-6 lg:p-8 rounded-sm bg-ink border-l-2 border-accent">
-                  <div className="flex justify-between items-center mb-4 lg:mb-6">
-                    <span className="text-[9px] font-bold text-muted uppercase tracking-[0.5em]">Tactical Strategy Hub</span>
-                    <span className="text-[8px] text-muted font-mono-data">LATENCY: 1ms</span>
+                  <div className="flex justify-between items-center mb-6 lg:mb-8">
+                    <span className="text-xs font-bold text-muted uppercase tracking-[0.5em]">Tactical Strategy Hub</span>
+                    <span className="text-xs text-muted font-mono-data">LATENCY: 1ms</span>
                   </div>
                   <p className="text-lg lg:text-xl text-primary font-bold tracking-tight leading-snug italic max-w-4xl">"{aiAdvice}"</p>
                 </div>
 
                 <div className="space-y-4 lg:space-y-6">
-                  <div className="flex justify-between items-end border-b border-white/5 pb-2">
-                    <h3 className="text-[10px] font-bold text-muted uppercase tracking-[0.5em]">Active Modules</h3>
-                    <button onClick={() => setCurrentView(View.BOTS)} className="text-[9px] font-bold text-muted hover:text-accent uppercase transition-all tracking-[0.3em]">All Fleet →</button>
+                  <div className="flex justify-between items-end border-b border-white/10 pb-3">
+                    <h3 className="text-xs font-bold text-muted uppercase tracking-[0.5em]">Active Modules</h3>
+                    <button onClick={() => setCurrentView(View.BOTS)} className="text-xs font-bold text-muted hover:text-accent uppercase transition-all tracking-[0.3em]">All Fleet →</button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-neutral-900/10 border border-white/5 rounded-sm overflow-hidden">
                     {bots.slice(0, 3).map(bot => <BotCard key={bot.id} bot={bot} onToggle={toggleBot} />)}
@@ -204,42 +204,42 @@ const App: React.FC = () => {
       {/* VIEWPORT */}
       <main className="flex-1 flex flex-col overflow-hidden relative">
         <header className="h-16 lg:h-24 border-b border-white/5 flex items-center justify-between px-6 lg:px-16 bg-void z-40 transition-colors duration-500">
-          <div className="flex items-center gap-4 lg:gap-10">
-            <span className="hidden sm:block text-[11px] font-bold text-muted uppercase tracking-[0.6em] opacity-60">OMNI</span>
-            <div className="hidden sm:block w-[1px] h-6 lg:h-8 bg-white/10"></div>
-            <h1 className="text-[10px] lg:text-xs font-bold text-primary uppercase tracking-[0.2em] lg:tracking-[0.3em] flex items-center gap-2 lg:gap-4">
+          <div className="flex items-center gap-6 lg:gap-12">
+            <span className="hidden sm:block text-xs font-bold text-muted uppercase tracking-[0.6em] opacity-60">OMNI</span>
+            <div className="hidden sm:block w-[1px] h-8 lg:h-10 bg-white/10"></div>
+            <h1 className="text-xs lg:text-sm font-bold text-primary uppercase tracking-[0.3em] lg:tracking-[0.4em] flex items-center gap-3 lg:gap-6">
               {navItems.find(n => n.id === currentView)?.label} <span className="hidden lg:inline text-muted opacity-50">NODE</span>
-              <span className="text-[8px] lg:text-[9px] px-2 py-0.5 border border-white/10 text-muted font-bold tracking-widest rounded-full uppercase">Secured</span>
+              <span className="text-xs lg:text-sm px-3 py-1 border border-white/10 text-muted font-bold tracking-widest rounded-full uppercase">Secured</span>
             </h1>
           </div>
 
-          <div className="flex items-center gap-4 lg:gap-10">
+          <div className="flex items-center gap-6 lg:gap-12">
             <div className="hidden md:flex flex-col items-end">
-              <span className="text-[8px] font-bold text-muted uppercase tracking-widest opacity-60">Time</span>
-              <span className="text-[11px] font-mono-data font-bold text-secondary">{currentTime}</span>
+              <span className="text-xs font-bold text-muted uppercase tracking-widest opacity-60">Time</span>
+              <span className="text-sm font-mono-data font-bold text-secondary">{currentTime}</span>
             </div>
 
-            <div className="hidden md:block w-[1px] h-6 lg:h-8 bg-white/10"></div>
+            <div className="hidden md:block w-[1px] h-8 lg:h-10 bg-white/10"></div>
 
             {/* THEME TOGGLE */}
             <button
               onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
-              className="group flex items-center gap-2 lg:gap-4 px-3 py-1.5 lg:px-4 lg:py-2 rounded-sm border border-white/10 hover:border-accent/40 transition-all duration-500"
+              className="group flex items-center gap-3 lg:gap-6 px-4 py-2 lg:px-6 lg:py-3 rounded-sm border border-white/10 hover:border-accent/40 transition-all duration-500"
             >
               <div className="flex flex-col items-end hidden sm:flex">
-                <span className="text-[8px] font-bold text-muted uppercase tracking-widest opacity-60">Mode</span>
-                <span className="text-[9px] font-bold text-secondary uppercase tracking-widest">{theme === 'dark' ? 'Dark' : 'Light'}</span>
+                <span className="text-xs font-bold text-muted uppercase tracking-widest opacity-60">Mode</span>
+                <span className="text-xs font-bold text-secondary uppercase tracking-widest">{theme === 'dark' ? 'Dark' : 'Light'}</span>
               </div>
-              <div className="w-8 h-4 lg:w-10 lg:h-5 bg-void border border-white/10 rounded-full relative p-0.5 lg:p-1 transition-all">
-                <div className={`w-2.5 h-2.5 lg:w-3 lg:h-3 bg-accent rounded-full transition-all duration-700 ease-[var(--easing)] ${theme === 'light' ? 'ml-4 lg:ml-5 shadow-[0_0_8px_var(--accent)]' : 'ml-0'}`}></div>
+              <div className="w-10 h-5 lg:w-12 lg:h-6 bg-void border border-white/10 rounded-full relative p-1 lg:p-1.5 transition-all">
+                <div className={`w-3 h-3 lg:w-3.5 lg:h-3.5 bg-accent rounded-full transition-all duration-700 ease-[var(--easing)] ${theme === 'light' ? 'ml-5 lg:ml-6 shadow-[0_0_10px_var(--accent)]' : 'ml-0'}`}></div>
               </div>
             </button>
 
-            <div className="hidden md:block w-[1px] h-6 lg:h-8 bg-white/10"></div>
+            <div className="hidden md:block w-[1px] h-8 lg:h-10 bg-white/10"></div>
 
             <div className="flex flex-col items-end">
-              <span className="text-[8px] font-bold text-muted uppercase tracking-widest opacity-60 hidden sm:block">Auth</span>
-              <span className="text-[10px] lg:text-11px font-mono-data font-bold text-secondary opacity-80">0x...F7E2</span>
+              <span className="text-xs font-bold text-muted uppercase tracking-widest opacity-60 hidden sm:block">Auth</span>
+              <span className="text-xs lg:text-sm font-mono-data font-bold text-secondary opacity-80">0x...F7E2</span>
             </div>
           </div>
         </header>

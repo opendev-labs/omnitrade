@@ -15,44 +15,44 @@ const BotCard: React.FC<BotCardProps> = ({ bot, onToggle }) => {
       <div className="flex justify-between items-start">
         <div className="space-y-1 lg:space-y-2">
           <div className="flex items-center gap-3 lg:gap-4">
-            <h3 className={`text-[10px] lg:text-[11px] font-bold tracking-widest uppercase ${isGuardian ? 'text-accent' : 'text-primary'}`}>
+            <h3 className={`text-sm lg:text-base font-bold tracking-widest uppercase ${isGuardian ? 'text-accent' : 'text-primary'}`}>
               {bot.name}
             </h3>
-            <span className={`text-[7px] lg:text-[8px] px-2 py-0.5 rounded-full font-bold border border-white/5 text-muted uppercase tracking-[0.1em]`}>
+            <span className={`text-xs px-2 py-0.5 rounded-full font-bold border border-white/10 text-muted uppercase tracking-[0.1em]`}>
               {bot.risk}
             </span>
           </div>
-          <div className="flex items-center gap-2 lg:gap-3 text-[8px] lg:text-[9px] font-mono-data text-muted font-bold">
+          <div className="flex items-center gap-3 lg:gap-4 text-xs lg:text-sm font-mono-data text-muted font-bold">
             <span>REG_0x{bot.id}</span>
-            <span className="opacity-20">/</span>
+            <span className="opacity-40">/</span>
             <span>STRAT_ACTIVE</span>
           </div>
         </div>
-        
-        <button 
+
+        <button
           onClick={() => onToggle(bot.id)}
           className={`w-10 h-1.5 lg:w-12 lg:h-1.5 transition-all duration-1000 ease-[var(--easing)] ${bot.active ? (isGuardian ? 'bg-accent shadow-[0_0_8px_var(--accent)]' : 'bg-accent/60') : 'bg-void border border-white/5'}`}
         />
       </div>
 
       {/* Logic Display */}
-      <div className="space-y-3 lg:space-y-4">
-        <div className="flex flex-col gap-1 lg:gap-2">
-          <span className="text-[7px] lg:text-[8px] font-bold text-muted uppercase tracking-[0.5em]">Trigger_Matrix</span>
-          <div className="text-[10px] lg:text-xs font-mono-data text-secondary leading-none tracking-tight">
+      <div className="space-y-4 lg:space-y-6 flex-1">
+        <div className="flex flex-col gap-2 lg:gap-3">
+          <span className="text-xs font-bold text-muted uppercase tracking-[0.5em]">Trigger_Matrix</span>
+          <div className="text-xs lg:text-sm font-mono-data text-secondary leading-none tracking-tight">
             {bot.trigger}
           </div>
         </div>
-        <p className="text-[10px] lg:text-[11px] text-secondary leading-relaxed font-medium tracking-tight line-clamp-2 min-h-[30px] lg:min-h-[32px]">
+        <p className="text-xs lg:text-sm text-secondary leading-relaxed font-medium tracking-tight line-clamp-2 min-h-[36px] lg:min-h-[40px]">
           {bot.description}
         </p>
       </div>
 
       {/* Action Tray */}
-      <div className="pt-2 flex gap-3">
-        <button 
+      <div className="pt-4 flex gap-4">
+        <button
           disabled={!bot.active}
-          className={`flex-1 py-2 lg:py-3 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border ${bot.active ? 'bg-void border-white/10 hover:bg-accent hover:text-void text-primary' : 'bg-transparent text-muted border-transparent cursor-not-allowed'}`}
+          className={`flex-1 py-3 lg:py-4 text-xs lg:text-sm font-bold uppercase tracking-[0.3em] transition-all duration-500 border ${bot.active ? 'bg-void border-white/10 hover:bg-accent hover:text-void text-primary' : 'bg-transparent text-muted border-transparent cursor-not-allowed'}`}
         >
           Initialize
         </button>
