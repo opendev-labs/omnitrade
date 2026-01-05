@@ -6,6 +6,7 @@
 
 > The Institutional-Grade Trading Operating System built on a **Zero-Cost Architecture**.
 
+![Omnitrade Portal](assets/landing-preview.png)
 ![Omnitrade Terminal](assets/terminal-preview.png)
 
 ---
