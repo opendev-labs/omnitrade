@@ -10,7 +10,7 @@ function getAI() {
     if (!key || key === "undefined") {
       throw new Error("API Key missing");
     }
-    aiInstance = new GoogleGenAI(key);
+    aiInstance = new GoogleGenAI({ apiKey: key });
   }
   return aiInstance;
 }
@@ -30,10 +30,18 @@ export async function getMarketAdvice(state: ScannerState): Promise<string> {
     `;
 
     const ai = getAI();
-    const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    return response.text() || "Unable to retrieve AI analysis at this time.";
+    if (!ai) throw new Error("AI not initialized");
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: prompt,
+      config: {
+        temperature: 0.7,
+        topP: 0.95,
+      },
+    });
+
+    return response.text || "Unable to retrieve AI analysis at this time.";
   } catch (error) {
     console.error("Gemini Advice Error:", error);
     return "Connection to AI Logic Engine lost. Monitoring manual telemetry.";
